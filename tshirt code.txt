@@ -1,0 +1,356 @@
+Color picker
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ColorPicker :MonoBehaviour {
+
+    public Material[] PlayerColorMat;
+    Material CurrMat;
+    new Renderer renderer;
+
+    // Use this for initialization
+    void Start()
+    {
+
+        renderer = this.GetComponent<Renderer>();
+
+    }
+
+    //render blue color
+    public void BlueColor()
+    {
+renderer.material = PlayerColorMat[0];
+CurrMat = renderer.material;
+    }
+
+    //render red color
+    public void RedColor()
+    {
+renderer.material = PlayerColorMat[1];
+CurrMat = renderer.material;
+    }
+
+    //render greencolor
+    public void whiteColor()
+    {
+renderer.material = PlayerColorMat[2];
+CurrMat = renderer.material;
+    }
+
+    //render yellow color
+
+    public void grayColor()
+    {
+renderer.material = PlayerColorMat[3];
+CurrMat = renderer.material;
+    }
+    public void black()
+    {
+renderer.material = PlayerColorMat[4];
+CurrMat = renderer.material;
+    }
+    public void pink()
+    {
+renderer.material = PlayerColorMat[5];
+CurrMat = renderer.material;
+    }
+    public void yellow()
+    {
+renderer.material = PlayerColorMat[6];
+CurrMat = renderer.material;
+    }
+    public void green()
+    {
+renderer.material = PlayerColorMat[7];
+CurrMat = renderer.material;
+    }
+}
+
+
+Demo
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class demo :MonoBehaviour {
+
+    public void jogger()
+    {
+Toast.Instance.Show("Jogging Clothing \nCloth Type: Polyester");
+    }
+    public void rigger()
+    {
+Toast.Instance.Show("Ringer T – shirt  \nCloth Type: Rayon ");
+    }
+    public void boys()
+    {
+Toast.Instance.Show("Polo collar  \nCloth Type: Linen");
+    }
+    public void girls()
+    {
+Toast.Instance.Show("Basic half sleeve T-shirt \nCloth Type: Cotton ");
+    }
+}
+
+
+
+
+
+Link
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class link :MonoBehaviour {
+
+    public void jogger()
+    {
+Application.LoadLevel("s1");
+    }
+
+    public void roundneck()
+    {
+Application.LoadLevel("s2");
+    }
+
+    public void girlstshirt()
+    {
+Application.LoadLevel("s4");
+    }
+
+    public void boystshirt()
+    {
+Application.LoadLevel("s3");
+    }
+
+   /* public void red()
+    {
+Application.LoadLevel("s5");
+    }*/
+
+    public void back()
+    {
+Application.LoadLevel("main1");
+    }
+    public void model3d()
+    {
+Application.LoadLevel("3d-model");
+    }
+    public void exit()
+    {
+Application.Quit();
+    }
+    public void call()
+    {
+Application.OpenURL("tel://8888888888");
+    }
+}
+
+
+
+ROTA
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class rota1 :MonoBehaviour {
+
+    public GameObject obj1;
+
+
+    public float rotateSpeed = 50f;
+    bool rotateStatus = false;
+
+    public void Rotasi()
+    {
+        if (rotateStatus == false)
+        {
+rotateStatus = true;
+        }
+        else
+        {
+rotateStatus = false;
+        }
+    }
+    void Update()
+    {
+        if (rotateStatus == true)
+        {
+obj1.transform.Rotate(new Vector3(0f, 0f, 1f));
+
+
+        }
+    }
+}
+
+ROTATION
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class rotation :MonoBehaviour {
+
+    public GameObject obj1;
+
+
+    public float rotateSpeed = 50f;
+    bool rotateStatus = false;
+
+    public void Rotasi()
+    {
+        if (rotateStatus == false
+ {
+rotateStatus = true;
+        }
+        else
+        {
+rotateStatus = false;
+        }
+    }
+    void Update()
+    {
+        if (rotateStatus == true)
+        {
+obj1.transform.Rotate(new Vector3(0f,1f,0f));
+
+
+        }
+    }
+}
+
+ROTOR
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Rotator :MonoBehaviour {
+    [SerializeField] float rotationSpeed = 100f;
+    bool dragging = false;
+Rigidbodyrb;
+	// Use this for initialization
+	void Start () {
+rb = GetComponent<Rigidbody>();
+	}
+	
+	// Update is called once per frame
+	void OnMouseDrag () {
+        dragging = true;
+
+	}
+    void Update()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            dragging = false;
+        }
+    }
+    void FixedUpdate()
+    {
+        if (dragging)
+        {
+            float x = Input.GetAxis("Mouse X") * rotationSpeed * Time.fixedDeltaTime;
+            float y = Input.GetAxis("Mouse Y") * rotationSpeed * Time.fixedDeltaTime;
+rb.AddTorque(Vector3.down * x);
+rb.AddTorque(Vector3.right * y);
+        }
+    }
+}
+
+SHARE
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.IO;
+using System.Runtime.InteropServices;
+
+public class Share :MonoBehaviour {
+
+    // string[] files;
+    string subject = "Aim In Order";
+    /* string body = "https://play.google.com/store/apps/details?id=com.radssoon.screenshot";*/
+    string body = "Request for order";
+#if UNITY_IPHONE
+
+ [DllImport("__Internal")]
+ private static extern void sampleMethod (string iosPath, string message);
+
+ [DllImport("__Internal")]
+ private static extern void sampleTextMethod (string message);
+
+#endif
+
+    public void OnAndroidTextSharingClick()
+    {
+
+StartCoroutine(ShareAndroidText());
+        //files = Directory.GetFiles(Application.persistentDataPath + "/", "*.png");
+    }
+IEnumeratorShareAndroidText()
+    {
+        yield return new WaitForEndOfFrame();
+        //execute the below lines if being run on a Android device
+#if UNITY_ANDROID
+        //Reference of AndroidJavaClass class for intent
+AndroidJavaClassintentClass = new AndroidJavaClass("android.content.Intent");
+        //Reference of AndroidJavaObject class for intent
+AndroidJavaObjectintentObject = new AndroidJavaObject("android.content.Intent");
+        //call setAction method of the Intent object created
+intentObject.Call<AndroidJavaObject>("setAction", intentClass.GetStatic<string>("ACTION_SEND"));
+        //set the type of sharing that is happening
+intentObject.Call<AndroidJavaObject>("setType", "text/plain");
+        //add data to be passed to the other activity i.e., the data to be sent
+intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_SUBJECT"), subject);
+        //intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_TITLE"), "Text Sharing ");
+intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_TEXT"), body);
+        //get the current activity
+AndroidJavaClass unity = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+AndroidJavaObjectcurrentActivity = unity.GetStatic<AndroidJavaObject>("currentActivity");
+        //start the activity by sending the intent data
+AndroidJavaObjectjChooser = intentClass.CallStatic<AndroidJavaObject>("createChooser", intentObject, "Share Via");
+currentActivity.Call("startActivity", jChooser);
+#endif
+    }
+
+
+    public void OniOSTextSharingClick()
+    {
+
+#if UNITY_IPHONE || UNITY_IPAD
+  string shareMessage = "Wow I Just Share Text ";
+sampleTextMethod (shareMessage);
+
+#endif
+    }
+
+    public void RateUs()
+    {
+#if UNITY_ANDROID
+Application.OpenURL("market://details?id=YOUR_ID");
+#elif UNITY_IPHONE
+  Application.OpenURL("itms-apps://itunes.apple.com/app/idYOUR_ID");
+#endif
+    }
+}
+
+SPLASH SCREEN
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SplashScreen :MonoBehaviour {
+
+    public float delayTime = 3;
+IEnumeratorStart()
+    {
+        yield return new WaitForSeconds(delayTime);
+Application.LoadLevel(1);
+    }
+	
+}
+
+
+
